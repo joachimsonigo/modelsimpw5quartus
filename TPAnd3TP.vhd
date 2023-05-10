@@ -1,0 +1,43 @@
+library IEEE;
+use ieee.std_logic_1164.all;
+
+entity TBAnd3TP is 
+end TBAnd3TP;
+
+architecture DESCRIPTION of TBAnd3TP is
+
+Component PW5v2 
+Port (A,B,C : in STD_LOGIC;
+        F : out STD_LOGIC);
+end Component;
+
+--Inputs
+signal A: std_logic := '0';
+signal B: std_logic := '0';
+signal C: std_logic := '0';
+--Outputs
+signal F: std_logic;
+
+Begin
+
+Uut : PW5v2 port map 
+    (A => A,
+    B => B,
+    C => C,
+    F => F);
+    
+    stim_proc: process
+    Begin 
+    
+    wait for 100 ns;
+    
+    A<='1'; B<='0'; C<='1'; wait for 20 ns;
+    A<='0'; B<='1'; C<='0'; wait for 30 ns;
+    A<='1'; B<='1'; C<='1'; wait for 40 ns;
+	 A<='0'; B<='1'; C<='1'; wait for 50 ns;
+    
+    wait;
+
+end process;
+
+end;
